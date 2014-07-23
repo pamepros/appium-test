@@ -20,12 +20,17 @@ module.exports = function(port, cb) {
   */
 
   browser.init({
-      device:'Android',
-      app:'chrome',
+      browserName: 'Chrome',
+      deviceName: 'Android',
+      platformName: 'Android',
+      platformVersion: '4.3'
     }, function() {
-
     browser.get("http://filmaj.ca", function() {
       browser.title(function(err, title) {
+        if(err) {
+          console.log(err);
+          return;
+        }
         assert.ok(~title.indexOf('Fil Maj'), 'Wrong title!');
         browser.elementByLinkText('CV', function(err, el) {
           browser.clickElement(el, function() {

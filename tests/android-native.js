@@ -14,13 +14,14 @@ module.exports = function(port, cb) {
   });
 
   app.init({
-    device:'android',
+    deviceName: 'Android',
+    platformName: 'Android',
     app:'http://saucelabs.com/example_files/ContactManager.apk'
     , "appPackage": "com.example.android.contactmanager"
     , "appActivity": ".ContactManager"
   }, function() {
     app.elementByName('Add Contact', function(err, el) {
-      if (err) console.error('elementbyname add contacnt', err);
+      if (err) console.error('elementbyname add contact', err);
       else el.click(function(err) {
         app.elementsByClassName('android.widget.EditText', function(err, fields) {
           if (err) console.error('textfield',err);
